@@ -1,0 +1,15 @@
+#c1 {
+    width: 400px;
+    height: 400px;
+    border: 1px solid black;
+    background-image: url("circle.png");
+}
+#control {
+    display: flex;
+}
+#pi{
+    margin-left: 30px;
+}
+#result{
+    margin-left: 5px;
+}
