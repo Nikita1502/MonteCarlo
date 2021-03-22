@@ -6,12 +6,22 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <canvas id="c1" width="400px" height="400px"></canvas>
-    <div id="control">
-        <input type="text" placeholder="Введите число точек" id="numOfDots">
-        <span id="pi">Pi равно:</span>
+<canvas id="c1" width="600px" height="600px"></canvas>
+<div id="control">
+    <!--        <input type="text" placeholder="Введите число точек" id="numOfDots">-->
+    <div id="dots">
+        <span> Количество точек: </span>
+        <span id="dotsNum"></span>
+    </div>
+    <div id="pi">
+        <span>Рассчетное Pi равно: </span>
         <span id="result"></span>
     </div>
-    <script src="script.js"></script>
+    <div id="error">
+        <span>Относительная погрешность: </span>
+        <span id="errorRes"></span>
+    </div>
+</div>
+<script src="script.js"></script>
 </body>
 </html>

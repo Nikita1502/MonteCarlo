@@ -1,50 +1,41 @@
-const numberOfDots = document.querySelector('#numOfDots');
-const PiResult = document.querySelector('#result')
+const dotsNum = document.querySelector('#dotsNum');
+const PiResult = document.querySelector('#result');
+const errorRes = document.querySelector('#errorRes');
 const canvas = document.querySelector('#c1');
 const ctx = canvas.getContext('2d');
 
-numberOfDots.onchange = function () {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+const numOfDots = 1000000;
 
-    let randomNumber = () => {
-        let rand = ((Math.random() < 0.5) ? -1 : 1)*Math.random();
-        return rand;
-    }
+let circleHit = 0;
 
-    const arr = [];
-
-    function createArrOfPoints(f) {
-        for (let i = 0; i < f; i++) {
-            const point = [];
-            const pointX = randomNumber();
-            const pointY = randomNumber();
-            point.push(pointX, pointY);
-            arr.push(point);
+function createDot() {
+    for (let i = 0; i < numOfDots; i++) {
+        const pointX = Math.random() * 2 - 1;
+        const pointY = Math.random() * 2 - 1;
+        if (Math.sqrt(Math.pow(pointX, 2) + Math.pow(pointY, 2)) <= 1) {
+            circleHit++;
+            ctx.fillStyle = 'red';
+            ctx.fillRect(pointX * 300 + 301, pointY * 300 + 301, 1, 1);
+        } else {
+            ctx.fillStyle = 'blue';
+            ctx.fillRect(pointX * 300 + 301, pointY * 300 + 301, 1, 1);
         }
     }
-    const numOfDots = this.value;
-    createArrOfPoints(numOfDots);
-
-    let circleHit = 0;
-
-    function checkHit() {
-        for (let i = 0; i < arr.length; i++) {
-            if (Math.sqrt(Math.pow(arr[i][0],2) + Math.pow(arr[i][1],2)) <= 1 ) {
-                circleHit++;
-                ctx.fillStyle='red';
-                ctx.fillRect(arr[i][0]*200+200, arr[i][1]*200+200, 1, 1);
-            } else {
-                ctx.fillStyle='blue';
-                ctx.fillRect(arr[i][0]*200+200, arr[i][1]*200+200, 1, 1);
-            }
-        }
-    }
-    checkHit();
-
-    function calculatePi() {
-        let pi = (4 * circleHit)/numOfDots;
-        return pi;
-    }
-    PiResult.innerHTML = calculatePi();
 }
+
+createDot();
+
+function calculatePi() {
+    let pi = (4 * circleHit) / numOfDots;
+    return pi;
+}
+function error() {
+    let absError = Math.abs((3.1415926535897932 - calculatePi()));
+    let relError = (absError/3.1415926535897932)*100;
+    return relError.toFixed(6) + '%';
+}
+dotsNum.innerHTML = numOfDots;
+PiResult.innerHTML = calculatePi();
+errorRes.innerHTML = error();
+
 

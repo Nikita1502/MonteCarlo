@@ -1,15 +1,9 @@
 #c1 {
-    width: 400px;
-    height: 400px;
+    width: 600px;
+    height: 600px;
     border: 1px solid black;
     background-image: url("circle.png");
 }
-#control {
+#control #dots #pi #error {
     display: flex;
-}
-#pi{
-    margin-left: 30px;
-}
-#result{
-    margin-left: 5px;
 }
